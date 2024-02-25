@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+<head>
+  <meta charset="UTF-8">
+  <title>Model Creator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='inputs/model creator/style.css') }}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<body class="keyframes-hold">
+
+    <div class="container">
+        <form class="styled-inputs" autocomplete="off" action="javascript:void(0);">
+            
+            <div class="col">
+
+                <!-- Select -->
+                <div class="form-group">
+
+                    <div id="custom-select-status" class="visually-hidden" aria-live="polite"></div>
+                    <div class="custom-select" id="myCustomSelect">
+
+                        <input type="text" id="custom-select-input" aria-describedby="custom-select-info" aria-expanded="false" onKeyDown="return false">
+
+                        <span id="custom-select-info" class="visually-hidden">Arrow down for options or start typing to filter.</span>
+                        <span class="custom-select__icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-triangle" focusable="false" aria-hidden="true" class="icon" role="img">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            </svg>
+                        </span>
+                        <ul class="custom-select__options hidden-all" id="custom-select-list">
+                            
+                        </ul>
+                    </div>
+                    <label for="custom-select-input">Grafana tag</label>
+                </div>
+                
+                <!-- Batch size -->
+                <div class="form-group">
+                    <!-- <input id="range" class = "batch" type="range" value="100" min="1" max="200" oninput="rangevalue.value=value" /> -->
+                    <input id="batch" type="range" value="100" min="1" max="200" oninput="rangevalue.value=value" />
+                    <label for="range" class="visually-hidden">Range</label>
+                    
+                    <label>Batch Size: <output id="rangevalue" class="batch_size">100</output></label>
+                </div>
+
+                <!-- Epochs -->
+                <div class="form-group">
+                    <!-- <input id="range" type="range" value="100" min="1" max="200" oninput="rangevalue.value=value" /> -->
+                    <input id="epochs" type="range" value="100" min="1" max="200" oninput="rangevalue.value=value" />
+                    <label for="range" class="visually-hidden">Range</label>
+                    
+                    <label>Epochs: <output id="rangevalue" class="epochs">100</output></label>
+                </div>
+                
+                <button id = "submit_button">
+                    Create Model
+                </button>
+                
+            </div>
+
+        </form>
+      
+    </div>
+
+    <div id="loader-wrapper" class="loader-hide">
+        <!-- <div id="loader"></div> -->
+        
+        <!-- <div class="loader-section section-left"></div> -->
+        <!-- <div class="loader-section section-right"></div> -->
+    
+        <div class="page">
+
+            <div style="width: 100%; display: grid; grid-template-columns: 0 2 auto;">
+              <div class="model_info_container">
+                  <!-- Show estimated time from Flask -->
+                  <span id="estimated_time"></span>
+              </div>
+              <div class="model_info_container">
+                <!-- Show epochs from FLask -->
+                <span id="current_epoch"></span>
+              </div>
+              <div id="progress_bar_container">
+                <div class="progress-bar" id="progress-bar" data-status="0%" aria-label="Progress bar."></div>
+              </div>
+              
+            </div>
+        </div>
+
+    </div>
+
+    <section class="modal hidden">
+        <div class="flex">
+            
+            <!-- <button class="btn-close">⨉</button> -->
+        </div>
+        <div>
+            <h3 id="output_text"></h3>
+        </div>
+        
+        <button class="btn">Ok</button>
+    </section>
+
+
+</body>
+<!-- partial -->
+  <script  src="{{ url_for('static', filename='inputs/model creator/script.js') }}"></script>
+  <script  src="{{ url_for('static', filename='inputs/model creator/functionality.js') }}" type="module"></script>
+  <script  src="{{ url_for('static', filename='inputs/model creator/config.js') }}"></script>
+</body>
+</html>

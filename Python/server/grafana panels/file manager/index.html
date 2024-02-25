@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>File Manager</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Open+Sans:300,400,600,700,800|Source+Sans+Pro:200,300,400,600,700,900'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css'/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='file manager/style.css') }}">
+    </head>
+    <body>
+
+        <div class="theme-structure big-file-manager">
+            <ul id="file_container">
+                {% if len > 0 %}
+                    <!-- <li class="file-sub-active show-up"><b>Load Model</b></li> -->
+                    {%for i in range(0, len)%}
+                        <li class="clicked" data-file-icon="html"><b>{{file_names[i]}}</b></li>
+                    {%endfor%}
+                {% else %}
+                <li class="file-sub-active show-up"><b>No models</b></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <section class="modal hidden">
+            <div class="flex">
+                
+                <button class="btn-close">⨉</button>
+            </div>
+            <div>
+                <h3 id="output_text">Model loaded!</h3>
+            </div>
+            
+            <button class="btn" id="ok"></button>
+            <button class="btn" id="delete_button">Delete model</button>
+        </section>
+
+
+        <!-- partial -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+        
+        <script src="{{ url_for('static', filename='file manager/script.js') }}"></script>
+        <script src="{{ url_for('static', filename='file manager/functionality.js') }}" type="module"></script>
+        <script src="{{ url_for('static', filename='file manager/config.js') }}"></script>
+    </body>
+</html>

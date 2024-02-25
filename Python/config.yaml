@@ -1,0 +1,76 @@
+# Flask server configurations
+flask:
+  # HTML path
+  template_folder: server/grafana panels
+  # CSS / JS path
+  static_folder: server/grafana panels
+  # Port
+  port: 5000
+
+# Model configuration
+model:
+  # How many samples the LSTM to take into consideration when training and predicting
+  timesteps: 1
+  # How many columns does the original dataset have
+  columns: 6 
+  # How many minutes the model should sleep before auto train checks run again
+  minutes: 30
+
+grafana_urls:
+  annotations: /api/annotations/
+  tags: /api/annotations/tags/
+  # admin:admin is the format username:password
+  base: http://admin:admin@localhost:3000
+
+influxdb:
+  robot_joints: [shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint, shoulder_pan_joint]
+  bucket: Robots
+  # !!! This field needs to be unique per robot !!!
+  measurement: London
+  # org: Saint Jonathan
+  org: Saint Jonathan
+  # !!! This field needs to be unique per robot !!!
+  tag:
+    key: robot
+    value: Robot 1
+  token: 3k0eTgpZKcHSX_6dkfQ8iC-pULmuznRUymu8oPcXJLuWEiC60dxbiq5z4MaYNqJKN8egLXaY-ivc5XGIn5UVlw==
+  url: http://localhost:8086
+
+paths:
+  # Where the models are stored
+  model: ./server/models/
+  # Where the thresholds are stored
+  threshold: ./server/user/thresholds/
+  # Location for every training JSON log file
+  logs: ./server/user/train_logs.json
+  # Where the user's configured model is stored:
+  # - grafana tag name
+  # - auto train period
+  # - batch size
+  # - epochs
+  # - current model to use
+  # - minutes - the last given number of minutes to train with
+  # - auto_train - when should be the next auto training period
+  user: ./server/user/current_model.yaml
+  # File which toggles the inference
+  switch: ./server/user/toggles/inference - no.txt
+  # File which tells live_inference to load the new model
+  update: ./server/user/toggles/update model.txt
+
+
+# Setting up the JavaScript config files
+javascript:
+  # The paths of config.js
+  paths:
+    - ./server/grafana panels/file manager/config.js
+    - ./server/grafana panels/inputs/auto train/config.js
+    - ./server/grafana panels/inputs/model creator/config.js
+    - ./server/grafana panels/toggle/config.js
+  # URL constants
+  mappings:
+    select_model: http://127.0.0.1:{PORT}/models/selecting/
+    create_file: http://127.0.0.1:{PORT}/models/toggling/
+    auto_train: http://127.0.0.1:{PORT}/models/auto training/
+    create_model: http://127.0.0.1:{PORT}/models/creating/
+    train_status: http://127.0.0.1:{PORT}/models/train status/
+    delete_trainining_file: http://127.0.0.1:{PORT}/models/deleting/

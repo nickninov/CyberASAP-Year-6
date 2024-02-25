@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Inference Toggle</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='toggle/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <!-- Light/dark Checkbox -->
+    <fieldset>
+        <div class="custom-checkbox">
+            <input id="status" type="checkbox" name="status">
+            <label for="status">
+
+                <div class="status-switch">
+                    <div class="svg-wrapper">
+                        <i class="fa fa-power-off custom_icon"></i>
+                    </div>
+                    <div class="svg-wrapper">
+                        
+                        <i class="fa fa-search custom_icon"></i>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </fieldset>
+
+</body>
+<!-- partial -->
+  <script  src="{{ url_for('static', filename='toggle/script.js') }}" type="module"></script>
+  <script  src="{{ url_for('static', filename='toggle/config.js') }}"></script>
+</body>
+</html>
